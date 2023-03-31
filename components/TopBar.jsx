@@ -21,13 +21,14 @@ const Topbar = () => {
           <Grid item xs>
             <FormControlLabel
             className="enable-disable-toggle"
-              control={<Switch checked={enabled} onChange={(_, value) => actions.setOptions(options => options.enabled = value)} />}
+              control={
+              <Switch checked={enabled} onChange={(_, value) => actions.setOptions(options => options.enabled = value)} />}
               label="Enable"
             />
           </Grid>
           <Grid item>
             <MaterialButton
-            className="copy-state-btn"
+            className=""
             size="small"
             variant="outlined"
             color="secondary"
@@ -39,8 +40,9 @@ const Topbar = () => {
             >
               Copy current State    
             </MaterialButton>
+            
             <MaterialButton
-            className="load-state-btn"
+            className="ml-8"
             size="small"
             variant="outlined"
             color="secondary"
@@ -48,6 +50,7 @@ const Topbar = () => {
             >
               Load
             </MaterialButton>
+          
             <Dialog
             open={dialogOpen}
             onClose={() => SetDialogOpen(false)}

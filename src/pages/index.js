@@ -8,6 +8,7 @@ import Button from 'components/User/Button';
 import Container from 'components/User/Container';
 import  Card from 'components/User/Card';
 import Topbar from 'components/TopBar';
+import GridComp from 'components/User/GridComp';
 import { Editor, Element, Frame, NodeElement } from '@craftjs/core';
 import Text from 'components/User/Text';
 import { CardBottom, CardTop } from 'components/User/Card';
@@ -44,7 +45,7 @@ const orders = () => {
             <div className='p-6'>
                 <div className='mx-auto '>
                     <Typography variant='h6' align='center'> A super simple page editor </Typography>
-                    <Editor resolver={{ Card, Button, Text, Container, CardTop, CardBottom }}
+                    <Editor resolver={{ Card, Button, Text, Container, CardTop, CardBottom, GridComp }}
                         enabled={enabled}
                     >
                         <div className='p-2'>
@@ -54,12 +55,15 @@ const orders = () => {
                             <Grid item xs>
                                 <Frame json={json}>
                                     <Element is={Container} padding={5} background="#eee" canvas>
-                                        <Card />
+                                        <Card padding={15}/>
                                         <Button size="small" variant="outlined">Click Me</Button>
                                         <Text size="small" text="Hi World" />
                                         <Element is={Container} padding={6} background="#999">
-                                            <Text fontSize="small" text="It's Me Again" />
+                                            <Text fontSize="small" text="It's Me Again" /> 
                                         </Element>
+                                        {/* <GridComp>
+                                            <Container padding={20} canvas/>
+                                        </GridComp> */}
                                     </Element>
                                 </Frame>
                             </Grid>

@@ -1,11 +1,13 @@
 // components/Toolbox.js
 import React from "react";
-import { Box, Typography, Grid, Button as MaterialButton } from "@material-ui/core";
+import { Box, Typography, Button as MaterialButton, Grid } from "@material-ui/core";
 import { Element, useEditor } from "@craftjs/core";
 import Text from "./User/Text";
 import Button from "./User/Button";
 import Container from "./User/Container";
 import Card from "./User/Card";
+import GridComp from "./User/GridComp";
+
 
 export const Toolbox = () => {
     const { connectors, query } = useEditor();
@@ -25,7 +27,19 @@ export const Toolbox = () => {
                     <MaterialButton ref={ref=> connectors.create(ref, <Element is={Container} padding={20} canvas />)} variant="contained">Container</MaterialButton>
                 </Grid>
                 <Grid container direction="column" item>
-                    <MaterialButton ref={ref=> connectors.create(ref, <Card />)} variant="contained">Card</MaterialButton>
+                    <MaterialButton ref={ref => connectors.create(ref, <Card />)} variant="contained">Card</MaterialButton>
+                </Grid>
+                <Grid container direction="column" item>
+                    {/* <MaterialButton ref={(ref) => connectors.create(ref,
+                                <GridComp>
+                                    <Container padding={20} canvas />
+                                </GridComp>
+                            )
+                        }
+                        variant="contained"
+                    >
+                        Grid
+                    </MaterialButton> */}
                 </Grid>
             </Grid>
         </Box>
