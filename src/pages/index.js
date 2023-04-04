@@ -10,9 +10,18 @@ import  Card from 'components/User/Card';
 import Topbar from 'components/TopBar';
 import GridComp from 'components/User/GridComp';
 import { Editor, Element, Frame, NodeElement } from '@craftjs/core';
+import { Layers } from '@craftjs/layers';
 import Text from 'components/User/Text';
 import { CardBottom, CardTop } from 'components/User/Card';
 import LZUTF8 from 'lzutf8';
+
+// const Layer = () => {
+//     return (
+//       <div>
+//         <DefaultLayerHeader />
+//       </div>
+//     )
+//   }
 
 
 
@@ -35,6 +44,7 @@ const orders = () => {
         
     }, []);
 
+ 
 
     return (
         <div className='bg-gray-100 min-h-screen'>
@@ -46,8 +56,10 @@ const orders = () => {
                 <div className='mx-auto '>
                     <Typography variant='h6' align='center'> A super simple page editor </Typography>
                     <Editor resolver={{ Card, Button, Text, Container, CardTop, CardBottom, GridComp }}
+                    
                         enabled={enabled}
                     >
+                        
                         <div className='p-2'>
                             <Topbar />
                         </div>
@@ -67,10 +79,13 @@ const orders = () => {
                                     </Element>
                                 </Frame>
                             </Grid>
+                            
                             <Grid item xs={3}>
                                 <Paper className="order-last">
                                     <Toolbox />
                                     <SettingsPanel />
+                                    <Layers 
+                            expandRootOnLoad={true}/>
                                 </Paper>
                             </Grid>
                         </Grid>

@@ -3,27 +3,27 @@ import { FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, Sli
 import { useNode } from '@craftjs/core';
 import ColorPicker from 'material-ui-color-picker';
 
-const Container = ({ background, padding = 0, width = "100%", marginTop = 9, marginBottom = 9, marginLeft = 0, marginRight = 0, children, ...props }) => {
+const Container = ({ background, padding = 0, width = "100%", marginTop = 9, marginBottom = 9, marginLeft = 0, marginRight = 0, children, flexDirection, alignItems, ...props }) => {
   const { connectors: { connect, drag } } = useNode();
   return (
-    <div className='flex flex-around flex-row'>
-    <Paper {...props} ref={ref => connect(drag(ref))} style={{ margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px`, background, padding: `${padding}px`, width: `${width}` }}>
+    <Paper  {...props} ref={ref => connect(drag(ref))} style={{ margin: `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px`, background, padding: `${padding}px`, width: `${width}`, alignItems: `${alignItems}`,display:'flex', flexDirection: `${flexDirection ?flexDirection:'column'}` }}>
       {children}
     </Paper>
-    </div>
   )
 }
 
 const ContainerDefaultProps = {
   background: "#CBCBCB",
   padding: 3,
-  width: "100%"
+  width: "100%",
+  flexDirection: 'column',
+  alignItems: 'flex-start'
 };
 
 export { ContainerDefaultProps };
 
 const ContainerSettings = () => {
-  const { background, padding, width, marginTop, marginBottom, marginLeft, marginRight, actions: { setProp }, related } = useNode(node => ({
+  const { background, padding, width, marginTop, marginBottom, marginLeft, marginRight,flexDirection,alignItems, actions: { setProp }, related } = useNode(node => ({
     background: node.data.props.background,
     padding: node.data.props.padding,
     width: node.data.props.width || "100%",
@@ -31,8 +31,18 @@ const ContainerSettings = () => {
     marginBottom: node.data.props.marginBottom || 0,
     marginLeft: node.data.props.marginLeft || 0,
     marginRight: node.data.props.marginRight || 0,
+    flexDirection: node.data.props.flexDirection || 'row',
+    alignItems: node.data.props.alignItems || 'flex-start',
     related: node.related
   }));
+
+  const handleFlexDirectionChange = (event) => {
+    setProp((props) => (props.flexDirection = event.target.value));
+  }
+
+  const handleAlignItemsChange = (event) => {
+    setProp((props) => (props.alignItems = event.target.style));
+  }
 
   const handleWidthChange = (event) => {
     setProp((props) => (props.width = event.target.value));
@@ -98,7 +108,21 @@ const ContainerSettings = () => {
         defaultValue={marginRight}
         onChange={handleMarginRightChange} />
       </FormControl>
-      
+      <FormControl fullWidth={true} margin="normal" component="fieldset">
+        <FormLabel component="legend">Flex Direction</FormLabel>
+        <RadioGroup name='flexDirection' defaultValue="column" onChange={handleFlexDirectionChange}>
+          <FormControlLabel value="row" control={<Radio />} label="Row" />
+          <FormControlLabel value="column" control={<Radio />} label="Column" />
+        </RadioGroup>
+      </FormControl>
+      <FormControl fullWidth={true} margin="normal" component="fieldset">
+        <FormLabel component="legend">Align Items</FormLabel>
+        <RadioGroup name='alignItems' onChange={handleAlignItemsChange}>
+          <FormControlLabel value="flex-start" control={<Radio />} label="Flex Start" />
+          <FormControlLabel value="center" control={<Radio />} label="Center" />
+          <FormControlLabel value="flex-end" control={<Radio />} label="Flex End" />
+        </RadioGroup>
+      </FormControl>
     </div>
   )
 }

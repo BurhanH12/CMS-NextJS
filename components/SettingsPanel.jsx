@@ -2,6 +2,7 @@ import React from 'react';
 import { Box, FormControl, FormLabel, Grid, Slider, Button as MaterialButton, Typography, Chip } from "@material-ui/core";
 import { useEditor } from '@craftjs/core';
 
+
 export const SettingsPanel = () => {
   const { actions, selected, isEnabled } = useEditor((state, query) => {
     const [currentNodeId] = state.events.selected;
