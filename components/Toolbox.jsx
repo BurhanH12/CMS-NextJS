@@ -6,8 +6,6 @@ import Text from "./User/Text";
 import Button from "./User/Button";
 import Container from "./User/Container";
 import Card from "./User/Card";
-import GridComp from "./User/GridComp";
-
 
 export const Toolbox = () => {
     const { connectors, query } = useEditor();
@@ -28,18 +26,6 @@ export const Toolbox = () => {
                 </Grid>
                 <Grid container direction="column" item>
                     <MaterialButton ref={ref => connectors.create(ref, <Card />)} variant="contained">Card</MaterialButton>
-                </Grid>
-                <Grid container direction="column" item>
-                    {/* <MaterialButton ref={(ref) => connectors.create(ref,
-                                <GridComp>
-                                    <Container padding={20} canvas />
-                                </GridComp>
-                            )
-                        }
-                        variant="contained"
-                    >
-                        Grid
-                    </MaterialButton> */}
                 </Grid>
             </Grid>
         </Box>

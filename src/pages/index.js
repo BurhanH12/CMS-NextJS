@@ -54,7 +54,7 @@ const orders = () => {
             </div>
             <div className='p-6'>
                 <div className='mx-auto '>
-                    <Typography variant='h6' align='center'> A super simple page editor </Typography>
+                    <Typography variant='h6' align='center'> A Not so simple page editor </Typography>
                     <Editor resolver={{ Card, Button, Text, Container, CardTop, CardBottom, GridComp }}
                     
                         enabled={enabled}
@@ -67,11 +67,11 @@ const orders = () => {
                             <Grid item xs>
                                 <Frame json={json}>
                                     <Element is={Container} padding={5} background="#eee" canvas>
-                                        <Card padding={15}/>
+                                        <Card padding={15} />
                                         <Button size="small" variant="outlined">Click Me</Button>
                                         <Text size="small" text="Hi World" />
                                         <Element is={Container} padding={6} background="#999">
-                                            <Text fontSize="small" text="It's Me Again" /> 
+                                            <Text fontSize="small" text="It's Me Again" />
                                         </Element>
                                         {/* <GridComp>
                                             <Container padding={20} canvas/>
@@ -79,13 +79,12 @@ const orders = () => {
                                     </Element>
                                 </Frame>
                             </Grid>
-                            
-                            <Grid item xs={3}>
-                                <Paper className="order-last">
-                                    <Toolbox />
-                                    <SettingsPanel />
-                                    <Layers 
-                            expandRootOnLoad={true}/>
+
+                            <Grid item xs={3} className="relative">
+                                <Paper className="sticky top-0">
+                                    <Toolbox className="sticky top-0"/>
+                                    <SettingsPanel className="sticky top-0"/>
+                                    <Layers expandRootOnLoad={true} />
                                 </Paper>
                             </Grid>
                         </Grid>
